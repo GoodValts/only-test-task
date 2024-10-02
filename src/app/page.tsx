@@ -2,6 +2,7 @@ import { HistoryPoints } from "@/components/HistoryPoints/HistoryPoints";
 import styles from "./page.module.scss";
 import { mockedData } from "@/lib/mockedData";
 import { DatePeriod } from "@/components/DatePeriod/DatePeriod";
+import { Slider } from "@/components/Slider/Slider";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
           <HistoryPoints data={mockedData} />
           <DatePeriod />
         </div>
+        <Slider />
       </main>
     </div>
   );

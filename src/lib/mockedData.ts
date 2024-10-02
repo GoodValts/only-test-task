@@ -1,7 +1,9 @@
 export type MockedDataType = {
   name: string;
-  dates: { year: number; event: string }[];
+  dates: Event[];
 }[];
+
+export type Event = { year: number; event: string };
 
 export const mockedData = [
   {
