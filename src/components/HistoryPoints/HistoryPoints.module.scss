@@ -8,6 +8,7 @@
   width: 530px;
   height: 530px;
   transition-duration: 0.5s;
+  z-index: 2;
 }
 
 .block {
@@ -24,6 +25,10 @@
   align-items: center;
   width: 5px;
   height: 5px;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+  letter-spacing: 0%;
   color: transparent;
   background-color: #42567a;
   border-radius: 50%;
@@ -47,5 +52,30 @@
     background-color: #f4f5f9;
     border: 1px solid rgba($color: #303e58, $alpha: 0.5);
     top: calc(50% - 28px);
+  }
+}
+
+.nameContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.pointName {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  overflow: hidden;
+  white-space: pre;
+  color: #42567a;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  letter-spacing: 0%;
+  left: 48px;
+
+  &_active {
+    width: auto;
+    height: auto;
   }
 }

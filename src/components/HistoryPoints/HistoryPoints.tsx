@@ -1,54 +1,43 @@
 "use client";
 
-import { MockedDataType } from "@/lib/mockedData";
 import styles from "./HistoryPoints.module.scss";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { calculateCirclePosition } from "@/lib/common/calculateCirclePosition";
+import { getPointNames } from "@/lib/common/getPointData";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { selectPoint, setPoint } from "@/lib/features/pointSlice";
 
-const calculatePosition = (index: number, angle: number) => {
-  const radius = 530 / 2;
-  const halfCircleDeg = 180;
-  const x =
-    radius *
-    Number(Math.cos((index * angle * Math.PI) / halfCircleDeg).toFixed(3));
-  const y =
-    radius *
-    Number(Math.sin((index * angle * Math.PI) / halfCircleDeg).toFixed(3));
-  return { x: x, y: y };
-};
+export const HistoryPoints = () => {
+  const currentIndex = useAppSelector(selectPoint);
+  const dispatch = useAppDispatch();
 
-export const HistoryPoints = ({ data }: { data: MockedDataType }) => {
-  const [active, setActive] = useState(0);
-
+  const data = getPointNames();
   const angle = 360 / data.length;
-
   const initialAngle = angle > 45 && angle <= 90 ? angle : 60;
 
-  const [circleAngle, setCircleAngle] = useState(initialAngle + 720);
+  const [circleAngle, setCircleAngle] = useState(
+    initialAngle + angle * currentIndex,
+  );
 
-  const rotate = (index: number) => {
-    const degInCircle = 360;
+  const rotate = useCallback(
+    (index: number) => {
+      const degInCircle = 360;
 
-    const current = circleAngle % degInCircle;
-    const target = initialAngle + index * angle;
+      const current = circleAngle % degInCircle;
+      const target = initialAngle + index * angle;
 
-    let delta = target - current;
+      let delta = target - current;
+      if (delta > degInCircle / 2) delta -= degInCircle;
+      if (delta < -degInCircle / 2) delta += degInCircle;
 
-    if (delta > degInCircle / 2) {
-      delta -= degInCircle;
-    }
-    if (delta < -degInCircle / 2) {
-      delta += degInCircle;
-    }
-
-    console.log("index=", index);
-    setActive(index);
-    setCircleAngle(circleAngle + delta);
-  };
+      setCircleAngle(circleAngle + delta);
+    },
+    [angle, circleAngle, initialAngle],
+  );
 
   useEffect(() => {
-    console.log("circleAngle=", circleAngle);
-    console.log("=");
-  }, [circleAngle]);
+    rotate(currentIndex);
+  }, [currentIndex, rotate]);
 
   return (
     <div
@@ -60,24 +49,38 @@ export const HistoryPoints = ({ data }: { data: MockedDataType }) => {
       {data.map((el, index) => (
         <div
           className={styles.block}
-          key={el.name}
+          key={el}
           style={{
-            transform: `translate(${calculatePosition(index, angle).x}px, ${calculatePosition(index, angle).y}px)`,
+            transform: `translate(${calculateCirclePosition(index, angle).x}px, ${calculateCirclePosition(index, angle).y}px)`,
           }}
         >
           <p
             className={
-              index === active
+              index === currentIndex
                 ? `${styles.pointNumber} ${styles.pointNumber_active}`
                 : styles.pointNumber
             }
             style={{ transform: `rotate(${circleAngle}deg)` }}
             onClick={() => {
-              rotate(index);
+              dispatch(setPoint(index));
             }}
           >
             {index + 1}
           </p>
+          <div
+            className={styles.nameContainer}
+            style={{ transform: `rotate(${circleAngle}deg)` }}
+          >
+            <p
+              className={
+                index === currentIndex
+                  ? `${styles.pointName} ${styles.pointName_active}`
+                  : styles.pointName
+              }
+            >
+              {el}
+            </p>
+          </div>
         </div>
       ))}
     </div>

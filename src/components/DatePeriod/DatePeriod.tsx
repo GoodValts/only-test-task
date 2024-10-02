@@ -1,17 +1,18 @@
 "use client";
 
-import { mockedData } from "@/lib/mockedData";
 import styles from "./DatePeriod.module.scss";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { selectPoint } from "@/lib/features/pointSlice";
+import { getPointData } from "@/lib/common/getPointData";
+import { useAppSelector } from "@/lib/hooks";
 
 export const DatePeriod = () => {
-  const [firstDate, setFirstDate] = useState(mockedData[0].dates[0].year);
-  const [secondDate, setSecondDate] = useState(
-    mockedData[0].dates[mockedData[0].dates.length - 1].year,
-  );
+  const index = useAppSelector(selectPoint);
 
-  const targetF = 2000;
-  const targetS = 2005;
+  const [firstDate, setFirstDate] = useState(getPointData(index).dates[0].year);
+  const [secondDate, setSecondDate] = useState(
+    getPointData(index).dates[getPointData(index).dates.length - 1].year,
+  );
 
   const changeDates = (
     currentDate: number,
@@ -21,13 +22,19 @@ export const DatePeriod = () => {
     const fps = 25;
     const ms = 500;
 
-    let steps = targetDate - currentDate;
+    let steps = Math.abs(targetDate - currentDate);
     if (steps > fps) steps = fps;
 
     const delta = (targetDate - currentDate) / steps;
 
     const updateDate = () => {
-      if (currentDate >= targetDate) return;
+      if (delta > 0) {
+        setStateDispatch(targetDate);
+        if (currentDate >= targetDate) return;
+      } else {
+        setStateDispatch(targetDate);
+        if (currentDate <= targetDate) return;
+      }
 
       currentDate += delta;
       setStateDispatch(Math.round(currentDate));
@@ -39,19 +46,25 @@ export const DatePeriod = () => {
   };
 
   useEffect(() => {
-    console.log(firstDate);
-  }, [firstDate]);
+    changeDates(firstDate, getPointData(index).dates[0].year, setFirstDate);
+    changeDates(
+      secondDate,
+      getPointData(index).dates[getPointData(index).dates.length - 1].year,
+      setSecondDate,
+    );
+  }, [index]);
 
   return (
     <div className={styles.container}>
       <p
         className={styles.date}
         onClick={() => {
-          changeDates(firstDate, targetF, setFirstDate);
-          changeDates(secondDate, targetS, setSecondDate);
+          changeDates(firstDate, 2022, setFirstDate);
+          changeDates(secondDate, 2022, setSecondDate);
         }}
       >
-        <span className={styles.firstDate}>{firstDate}</span>{" "}
+        <span className={styles.firstDate}>{firstDate}</span>
+        {"  "}
         <span className={styles.secondDate}>{secondDate}</span>
       </p>
     </div>
