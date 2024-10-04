@@ -20,7 +20,7 @@ export default function Home() {
             <HistoryPoints />
             <DatePeriod />
           </div>
-          <div>
+          <div className={styles.info}>
             <PointController />
             <Slider />
           </div>

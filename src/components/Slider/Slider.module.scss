@@ -1,51 +1,23 @@
 @import "../../app/general";
 
-.container {
+.slider {
   position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 530px;
-  height: 530px;
-  transition-duration: 0.5s;
+  top: -133px;
+  margin: 56px auto;
 }
 
-.block {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.year {
+  color: #3877ee;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
+  margin-bottom: 14px;
 }
 
-.pointNumber {
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 5px;
-  height: 5px;
-  color: transparent;
-  background-color: #42567a;
-  border-radius: 50%;
-  border: 1px solid rgba($color: #303e58, $alpha: 0.5);
-  top: calc(50% - 3px);
-
-  &_active {
-    width: 56px;
-    height: 56px;
-    color: #42567a;
-    background-color: #f4f5f9;
-    border: 1px solid rgba($color: #303e58, $alpha: 0.5);
-    top: calc(50% - 28px);
-  }
-
-  @include _hover {
-    cursor: pointer;
-    width: 56px;
-    height: 56px;
-    color: #42567a;
-    background-color: #f4f5f9;
-    border: 1px solid rgba($color: #303e58, $alpha: 0.5);
-    top: calc(50% - 28px);
-  }
+.event {
+  color: #42567a;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
 }
