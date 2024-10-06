@@ -1,36 +1,55 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# only-test-task
 
-## Getting Started
+### Contents
 
-First, run the development server:
+- [Description](#description)
+- [Technologies](#technologies)
+- [Install](#install)
+- [Custom data](#Custom_data)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## Description
+
+Test task for the junior frontend position at [Only](https://only.digital/). Deadline - 08/10.2024.
+
+[PR link](https://github.com/GoodValts/only-test-task/pull/1)
+
+## Technologies
+
+Technology stack:
+
+- Next.js
+- TypeScript
+- SCSS
+- ESLint
+- Prettier
+
+---
+
+## Install
+
+To start the application, please make sure you have [Git](https://git-scm.com) and [Node.js](https://nodejs.org) installed on your machine. Then, follow these steps:
+
+1. Clone repository: `git clone https://github.com/GoodValts/only-test-task/`
+1. Navigate to the project directory: `cd only-test-task`
+1. Install dependencies: `npm install`
+1. Start the development server: `npm run dev`
+1. Open the link or navigate to `http://localhost:3000/`
+
+Your also open [deploy link](https://only-test-task.netlify.app)
+
+## Custom_data
+
+You can open `src/lib/data.json` and edit data as you want. Also, you can create your own data file and change import in `src/app/components/HistoricalDates/HistoricalDates.tsx`
+
 ```
+{
+  name: string;
+  dates: {
+    year: number;
+    event: string;
+  }[];
+}[]
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
