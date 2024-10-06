@@ -1,16 +1,25 @@
 "use client";
-import { getPointNames } from "@/lib/common/getPointData";
+
 import styles from "./PointController.module.scss";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { selectPoint, setPoint } from "@/lib/features/pointSlice";
+import { PointDataType } from "@/lib/types/types";
 import { formatIndicatorValue } from "@/lib/common/calculateIndicatorString";
 import arrowIcon from "../../assets/arrow-icon.svg";
 import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
 
-export const PointController = () => {
-  const dispatch = useAppDispatch();
-  const total = getPointNames().length;
-  const current = useAppSelector(selectPoint);
+type PropsType = {
+  data: PointDataType[];
+  index: number;
+  setIndex: Dispatch<SetStateAction<number>>;
+};
+
+export const PointController = ({
+  data: pointsData,
+  index: pointIndex,
+  setIndex: setPointIndex,
+}: PropsType) => {
+  const total = pointsData.length;
+  const current = pointIndex;
 
   return (
     <div className={styles.container}>
@@ -24,7 +33,7 @@ export const PointController = () => {
             : styles.button
         }
         onClick={() => {
-          if (current > 0) dispatch(setPoint(current - 1));
+          if (current > 0) setPointIndex(current - 1);
         }}
       >
         <Image src={arrowIcon} alt="prev_button" />
@@ -36,7 +45,7 @@ export const PointController = () => {
             : `${styles.button} ${styles.button_reflect}`
         }
         onClick={() => {
-          if (current < total - 1) dispatch(setPoint(current + 1));
+          if (current < total - 1) setPointIndex(current + 1);
         }}
       >
         <Image src={arrowIcon} alt="next_button" />

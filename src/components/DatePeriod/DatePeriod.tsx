@@ -2,22 +2,28 @@
 
 import styles from "./DatePeriod.module.scss";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { selectPoint } from "@/lib/features/pointSlice";
-import { getPointData } from "@/lib/common/getPointData";
-import { useAppSelector } from "@/lib/hooks";
+import { PointDataType } from "@/lib/types/types";
 
-export const DatePeriod = () => {
-  const index = useAppSelector(selectPoint);
+type PropsType = {
+  index: number;
+  data: PointDataType[];
+};
 
-  const [firstDate, setFirstDate] = useState(getPointData(index).dates[0].year);
+export const DatePeriod = ({
+  index: pointIndex,
+  data: pointsData,
+}: PropsType) => {
+  const [firstDate, setFirstDate] = useState(
+    pointsData[pointIndex].dates[0].year
+  );
   const [secondDate, setSecondDate] = useState(
-    getPointData(index).dates[getPointData(index).dates.length - 1].year,
+    pointsData[pointIndex].dates[pointsData[pointIndex].dates.length - 1].year
   );
 
   const changeDates = (
     currentDate: number,
     targetDate: number,
-    setStateDispatch: Dispatch<SetStateAction<number>>,
+    setStateDispatch: Dispatch<SetStateAction<number>>
   ) => {
     const fps = 25;
     const ms = 500;
@@ -46,13 +52,14 @@ export const DatePeriod = () => {
   };
 
   useEffect(() => {
-    changeDates(firstDate, getPointData(index).dates[0].year, setFirstDate);
+    changeDates(firstDate, pointsData[pointIndex].dates[0].year, setFirstDate);
     changeDates(
       secondDate,
-      getPointData(index).dates[getPointData(index).dates.length - 1].year,
-      setSecondDate,
+      pointsData[pointIndex].dates[pointsData[pointIndex].dates.length - 1]
+        .year,
+      setSecondDate
     );
-  }, [index]);
+  }, [pointIndex]);
 
   return (
     <div className={styles.container}>

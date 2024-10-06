@@ -5,9 +5,7 @@ import "swiper/scss";
 
 import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
-import { getPointData } from "@/lib/common/getPointData";
-import { useAppSelector } from "@/lib/hooks";
-import { selectPoint } from "@/lib/features/pointSlice";
+import { PointDataType } from "@/lib/types/types";
 import { Bebas_Neue } from "next/font/google";
 import { useRef, useState } from "react";
 import sliderIcon from "../../assets/slider-arrow-icon.svg";
@@ -18,13 +16,17 @@ const bebas = Bebas_Neue({
   subsets: ["latin"],
 });
 
-export const Slider = () => {
+type PropsType = {
+  data: PointDataType[];
+  index: number;
+};
+
+export const Slider = ({ data: pointsData, index: pointIndex }: PropsType) => {
   const [isStart, setIsStart] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const [slideNumber, setSlideNumber] = useState(0);
 
-  const index = useAppSelector(selectPoint);
-  const eventArr = getPointData(index).dates;
+  const eventArr = pointsData[pointIndex].dates;
 
   const swiperRef = useRef<SwiperClass | null>(null);
 
@@ -61,7 +63,6 @@ export const Slider = () => {
           onInit={(swiper) => (swiperRef.current = swiper)}
           spaceBetween={80}
           slidesPerView={3}
-          onSwiper={(swiper) => console.log(swiper)}
           onSlideChange={(swiper) => {
             if (swiper.realIndex !== 0) setIsStart(false);
             if (swiper.realIndex !== eventArr.length - 3) setIsEnd(false);

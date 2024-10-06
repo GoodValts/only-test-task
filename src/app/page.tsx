@@ -1,31 +1,13 @@
-import { HistoryPoints } from "@/components/HistoryPoints/HistoryPoints";
+import { formatData } from "@/lib/common/getPointsData";
 import styles from "./page.module.scss";
-import { DatePeriod } from "@/components/DatePeriod/DatePeriod";
-import { Slider } from "@/components/Slider/Slider";
-import { PointController } from "@/components/PointController/PointController";
-import StoreProvider from "./StoreProvider";
+import { HistoricalDates } from "@/components/HistoricalDates/HistoricalDates";
+
+import data from "../lib/data.json";
 
 export default function Home() {
   return (
-    <StoreProvider index={0}>
-      <div className={styles.page}>
-        <main className={styles.main}>
-          <div className={styles.header}>
-            <div className={styles.headerRectangle}></div>
-            <h1 className={styles.headerText}>Исторические даты</h1>
-          </div>
-          <div className={styles.verticalAxis}></div>
-          <div className={styles.ellipse}>
-            <div className={styles.horizontalAxis}></div>
-            <HistoryPoints />
-            <DatePeriod />
-          </div>
-          <div className={styles.info}>
-            <PointController />
-            <Slider />
-          </div>
-        </main>
-      </div>
-    </StoreProvider>
+    <div className={styles.page}>
+      <HistoricalDates data={formatData(data)} />
+    </div>
   );
 }

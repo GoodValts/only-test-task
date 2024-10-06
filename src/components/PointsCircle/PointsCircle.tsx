@@ -1,22 +1,34 @@
 "use client";
 
-import styles from "./HistoryPoints.module.scss";
-import { useCallback, useEffect, useState } from "react";
+import styles from "./PointsCircle.module.scss";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import { calculateCirclePosition } from "@/lib/common/calculateCirclePosition";
-import { getPointNames } from "@/lib/common/getPointData";
-import { useAppDispatch, useAppSelector } from "@/lib/hooks";
-import { selectPoint, setPoint } from "@/lib/features/pointSlice";
+import { getPointNames } from "@/lib/common/getPointsData";
+import { PointDataType } from "@/lib/types/types";
 
-export const HistoryPoints = () => {
-  const currentIndex = useAppSelector(selectPoint);
-  const dispatch = useAppDispatch();
+type PropsType = {
+  data: PointDataType[];
+  index: number;
+  setIndex: Dispatch<SetStateAction<number>>;
+};
 
-  const data = getPointNames();
+export const PointsCircle = ({
+  data: pointsData,
+  index: pointIndex,
+  setIndex: setPointIndex,
+}: PropsType) => {
+  const data = getPointNames(pointsData);
   const angle = 360 / data.length;
   const initialAngle = angle > 45 && angle <= 90 ? angle : 60;
 
   const [circleAngle, setCircleAngle] = useState(
-    initialAngle + angle * currentIndex,
+    initialAngle + angle * pointIndex,
   );
 
   const rotate = useCallback(
@@ -36,8 +48,8 @@ export const HistoryPoints = () => {
   );
 
   useEffect(() => {
-    rotate(currentIndex);
-  }, [currentIndex, rotate]);
+    rotate(pointIndex);
+  }, [pointIndex, rotate]);
 
   return (
     <div
@@ -56,13 +68,13 @@ export const HistoryPoints = () => {
         >
           <p
             className={
-              index === currentIndex
+              index === pointIndex
                 ? `${styles.pointNumber} ${styles.pointNumber_active}`
                 : styles.pointNumber
             }
             style={{ transform: `rotate(${circleAngle}deg)` }}
             onClick={() => {
-              dispatch(setPoint(index));
+              setPointIndex(index);
             }}
           >
             {index + 1}
@@ -73,7 +85,7 @@ export const HistoryPoints = () => {
           >
             <p
               className={
-                index === currentIndex
+                index === pointIndex
                   ? `${styles.pointName} ${styles.pointName_active}`
                   : styles.pointName
               }

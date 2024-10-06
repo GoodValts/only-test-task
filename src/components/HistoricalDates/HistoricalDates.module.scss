@@ -1,0 +1,68 @@
+@import "../../app/general";
+
+.main {
+  position: relative;
+  width: 1440px;
+  margin-left: 160px;
+  border-left: 1px solid rgba(66, 86, 122, 0.1);
+  border-right: 1px solid rgba(66, 86, 122, 0.1);
+}
+
+.verticalAxis {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: rgba(66, 86, 122, 0.1);
+  top: 0;
+  right: 50%;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  top: 140px;
+}
+
+.headerRectangle {
+  width: 7px;
+  height: 120px;
+  background-image: linear-gradient(to bottom, #3877ee 0%, #ef5da8 100%);
+}
+
+.headerText {
+  max-width: 353px;
+  color: #42567a;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0%;
+  text-align: left;
+  margin-left: 78px;
+}
+
+.ellipse {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 530px;
+  height: 530px;
+  border-radius: 530px;
+  border: 1px solid rgba(66, 86, 122, 0.1);
+  margin: auto;
+  top: 55px;
+}
+
+.horizontalAxis {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(66, 86, 122, 0.1);
+  left: 0;
+}
+
+.info {
+  margin: 0 80px;
+}

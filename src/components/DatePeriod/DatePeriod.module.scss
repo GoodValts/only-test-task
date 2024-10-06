@@ -3,6 +3,7 @@
 .container {
   display: flex;
   position: absolute;
+  top: 170px;
 }
 
 .date {
@@ -10,7 +11,7 @@
   font-size: 200px;
   font-weight: 700;
   line-height: 160px;
-  letter-spacing: -2%;
+  letter-spacing: -4px;
   margin-right: 33px;
 }
 
