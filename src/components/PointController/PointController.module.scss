@@ -2,14 +2,21 @@
 
 .container {
   display: flex;
+
+  @include _mobile {
+    order: 1;
+  }
 }
 
 .pointsController {
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, min-content);
-  // top: -56px;
   grid-gap: 20px;
+
+  @include _mobile {
+    grid-gap: 8px 10px;
+  }
 }
 
 .indicator {
@@ -41,17 +48,26 @@
   @include _hover {
     cursor: pointer;
   }
+
+  @include _mobile {
+    width: 25px;
+    height: 25px;
+  }
 }
 
 .sliderController {
   position: absolute;
-  display: flex;
+  display: none;
   justify-content: center;
   width: 100%;
   margin-top: 25px;
   gap: 10px;
-}
 
+  @include _mobile {
+    display: flex;
+    width: calc(100vw - 40px);
+  }
+}
 
 .slidePagination {
   display: flex;

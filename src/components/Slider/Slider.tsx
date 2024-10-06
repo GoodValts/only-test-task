@@ -7,7 +7,7 @@ import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import { PointDataType } from "@/lib/types/types";
 import { Bebas_Neue } from "next/font/google";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import sliderIcon from "../../assets/slider-arrow-icon.svg";
 import Image from "next/image";
 
@@ -19,18 +19,15 @@ const bebas = Bebas_Neue({
 type PropsType = {
   data: PointDataType[];
   index: number;
-  slideNumber: number;
-  setSlideNumber: Dispatch<SetStateAction<number>>;
 };
 
-export const Slider = ({
-  data: pointsData,
-  index: pointIndex,
-  slideNumber: slideNumber,
-  setSlideNumber: setSlideNumber,
-}: PropsType) => {
+export const Slider = ({ data: pointsData, index: pointIndex }: PropsType) => {
   const [isStart, setIsStart] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
+
+  const [slideNumber, setSlideNumber] = useState(0);
+
+  const [width, setWidth] = useState(1600);
 
   const eventArr = pointsData[pointIndex].dates;
 
@@ -46,15 +43,24 @@ export const Slider = ({
     setSlideNumber(slideNumber - 1);
     setIsEnd(false);
   };
-  const slideIndex = (index: number) => {
-    // console.log("index=", index);
-    swiperRef.current?.slideTo(index);
-    setSlideNumber(index);
-  };
 
   useEffect(() => {
-    slideIndex(slideNumber);
-  }, [slideNumber]);
+    setWidth(window.innerWidth);
+
+    const handleResize = () => setWidth(window.innerWidth);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    setIsStart(true);
+    if (pointsData[pointIndex].dates.length > 3) {
+      setIsEnd(false);
+    } else {
+      setIsEnd(true);
+    }
+  }, [pointIndex, pointsData]);
 
   return (
     <>
@@ -71,20 +77,14 @@ export const Slider = ({
         <Swiper
           className={styles.slider}
           onInit={(swiper) => (swiperRef.current = swiper)}
-          spaceBetween={80}
-          slidesPerView={3}
+          spaceBetween={width > 1599.98 ? 80 : 25}
+          slidesPerView={width > 1599.98 ? 3 : 2}
           onSlideChange={(swiper) => {
             if (swiper.realIndex !== 0) setIsStart(false);
             if (swiper.realIndex !== eventArr.length - 3) setIsEnd(false);
           }}
-          onReachBeginning={() => {
-            // console.log("Reach start");
-            setIsStart(true);
-          }}
-          onReachEnd={() => {
-            // console.log("Reach end");
-            setIsEnd(true);
-          }}
+          onReachBeginning={() => setIsStart(true)}
+          onReachEnd={() => setIsEnd(true)}
         >
           {eventArr.map((event) => (
             <SwiperSlide key={event.event}>
@@ -94,6 +94,7 @@ export const Slider = ({
               <p className={styles.event}>{event.event}</p>
             </SwiperSlide>
           ))}
+          {width < 1599.98 && <SwiperSlide></SwiperSlide>}
         </Swiper>
 
         {!isEnd && (

@@ -14,16 +14,16 @@ export const DatePeriod = ({
   data: pointsData,
 }: PropsType) => {
   const [firstDate, setFirstDate] = useState(
-    pointsData[pointIndex].dates[0].year
+    pointsData[pointIndex].dates[0].year,
   );
   const [secondDate, setSecondDate] = useState(
-    pointsData[pointIndex].dates[pointsData[pointIndex].dates.length - 1].year
+    pointsData[pointIndex].dates[pointsData[pointIndex].dates.length - 1].year,
   );
 
   const changeDates = (
     currentDate: number,
     targetDate: number,
-    setStateDispatch: Dispatch<SetStateAction<number>>
+    setStateDispatch: Dispatch<SetStateAction<number>>,
   ) => {
     const fps = 25;
     const ms = 500;
@@ -57,7 +57,7 @@ export const DatePeriod = ({
       secondDate,
       pointsData[pointIndex].dates[pointsData[pointIndex].dates.length - 1]
         .year,
-      setSecondDate
+      setSecondDate,
     );
   }, [pointIndex]);
 

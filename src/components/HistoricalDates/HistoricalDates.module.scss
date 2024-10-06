@@ -6,6 +6,13 @@
   margin-left: 160px;
   border-left: 1px solid rgba(66, 86, 122, 0.1);
   border-right: 1px solid rgba(66, 86, 122, 0.1);
+
+  @include _mobile {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    overflow: hidden;
+  }
 }
 
 .verticalAxis {
@@ -15,6 +22,10 @@
   background-color: rgba(66, 86, 122, 0.1);
   top: 0;
   right: 50%;
+
+  @include _mobile {
+    display: none;
+  }
 }
 
 .header {
@@ -23,12 +34,21 @@
   align-items: center;
   margin-top: 30px;
   top: 140px;
+
+  @include _mobile {
+    top: 0;
+    margin-top: 59px;
+  }
 }
 
 .headerRectangle {
   width: 7px;
   height: 120px;
   background-image: linear-gradient(to bottom, #3877ee 0%, #ef5da8 100%);
+
+  @include _mobile {
+    display: none;
+  }
 }
 
 .headerText {
@@ -40,6 +60,12 @@
   letter-spacing: 0%;
   text-align: left;
   margin-left: 78px;
+
+  @include _mobile {
+    max-width: 123px;
+    font-size: 20px;
+    margin: 0 20px;
+  }
 }
 
 .ellipse {
@@ -53,6 +79,13 @@
   border: 1px solid rgba(66, 86, 122, 0.1);
   margin: auto;
   top: 55px;
+
+  @include _mobile {
+    width: auto;
+    height: auto;
+    border: 0;
+    top: 0;
+  }
 }
 
 .horizontalAxis {
@@ -61,8 +94,20 @@
   height: 1px;
   background-color: rgba(66, 86, 122, 0.1);
   left: 0;
+
+  @include _mobile {
+    position: absolute;
+    left: 20px;
+    top: 185px;
+    width: calc(100% - 40px);
+  }
 }
 
 .info {
   margin: 0 80px;
+
+  @include _mobile {
+    display: grid;
+    margin: 76px 20px 0 20px;
+  }
 }

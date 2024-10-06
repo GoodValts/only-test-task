@@ -9,6 +9,10 @@
   height: 530px;
   transition-duration: 0.5s;
   z-index: 2;
+
+  @include _mobile {
+    display: none;
+  }
 }
 
 .block {

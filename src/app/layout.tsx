@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import "./globals.scss";
 
 export const metadata: Metadata = {
-  title: "Only. test task",
+  title: "Only team. Test task",
   description: "History events page",
 };
 

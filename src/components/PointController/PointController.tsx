@@ -11,20 +11,15 @@ type PropsType = {
   data: PointDataType[];
   index: number;
   setIndex: Dispatch<SetStateAction<number>>;
-  slideNumber: number;
-  setSlideNumber: Dispatch<SetStateAction<number>>;
 };
 
 export const PointController = ({
   data: pointsData,
   index: pointIndex,
   setIndex: setPointIndex,
-  slideNumber: slideNumber,
-  setSlideNumber: setSlideNumber,
 }: PropsType) => {
   const total = pointsData.length;
   const current = pointIndex;
-  const eventArr = pointsData[current].dates;
 
   return (
     <div className={styles.container}>
@@ -58,15 +53,15 @@ export const PointController = ({
         </button>
       </div>
       <div className={styles.sliderController}>
-        {Array.from({ length: eventArr.length }).map((_, index) => (
+        {Array.from({ length: total }).map((_, index) => (
           <button
             key={index}
             className={
-              slideNumber === index
+              index === pointIndex
                 ? `${styles.slidePagination} ${styles.slidePagination_active}`
                 : styles.slidePagination
             }
-            onClick={() => setSlideNumber(index)}
+            onClick={() => setPointIndex(index)}
           ></button>
         ))}
       </div>
