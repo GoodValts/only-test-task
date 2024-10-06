@@ -49,23 +49,3 @@
   }
 }
 
-.slidePagination {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  border: 0;
-  background: #42567a;
-  opacity: 0.4;
-  margin: 5px;
-
-  @include _hover {
-    cursor: pointer;
-  }
-
-  &_active {
-    opacity: 1;
-  }
-}

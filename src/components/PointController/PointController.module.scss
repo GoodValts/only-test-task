@@ -1,6 +1,10 @@
 @import "../../app/general";
 
 .container {
+  display: flex;
+}
+
+.pointsController {
   position: relative;
   display: grid;
   grid-template-columns: repeat(2, min-content);
@@ -36,5 +40,35 @@
 
   @include _hover {
     cursor: pointer;
+  }
+}
+
+.sliderController {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 25px;
+  gap: 10px;
+}
+
+
+.slidePagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 0;
+  background: #42567a;
+  opacity: 0.4;
+
+  @include _hover {
+    cursor: pointer;
+  }
+
+  &_active {
+    opacity: 1;
   }
 }

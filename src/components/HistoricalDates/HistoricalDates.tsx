@@ -14,6 +14,7 @@ export const HistoricalDates = ({
   data: PointDataType[];
 }) => {
   const [pointIndex, setPointIndex] = useState(0);
+  const [slideNumber, setSlideNumber] = useState(0);
 
   return (
     <main className={styles.main}>
@@ -36,8 +37,15 @@ export const HistoricalDates = ({
           data={pointsData}
           index={pointIndex}
           setIndex={setPointIndex}
+          slideNumber={slideNumber}
+          setSlideNumber={setSlideNumber}
         />
-        <Slider data={pointsData} index={pointIndex} />
+        <Slider
+          data={pointsData}
+          index={pointIndex}
+          slideNumber={slideNumber}
+          setSlideNumber={setSlideNumber}
+        />
       </div>
     </main>
   );

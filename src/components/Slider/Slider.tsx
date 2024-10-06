@@ -7,7 +7,7 @@ import { Swiper, SwiperClass, SwiperSlide } from "swiper/react";
 
 import { PointDataType } from "@/lib/types/types";
 import { Bebas_Neue } from "next/font/google";
-import { useRef, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import sliderIcon from "../../assets/slider-arrow-icon.svg";
 import Image from "next/image";
 
@@ -19,12 +19,18 @@ const bebas = Bebas_Neue({
 type PropsType = {
   data: PointDataType[];
   index: number;
+  slideNumber: number;
+  setSlideNumber: Dispatch<SetStateAction<number>>;
 };
 
-export const Slider = ({ data: pointsData, index: pointIndex }: PropsType) => {
+export const Slider = ({
+  data: pointsData,
+  index: pointIndex,
+  slideNumber: slideNumber,
+  setSlideNumber: setSlideNumber,
+}: PropsType) => {
   const [isStart, setIsStart] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-  const [slideNumber, setSlideNumber] = useState(0);
 
   const eventArr = pointsData[pointIndex].dates;
 
@@ -41,10 +47,14 @@ export const Slider = ({ data: pointsData, index: pointIndex }: PropsType) => {
     setIsEnd(false);
   };
   const slideIndex = (index: number) => {
-    console.log("index=", index);
+    // console.log("index=", index);
     swiperRef.current?.slideTo(index);
     setSlideNumber(index);
   };
+
+  useEffect(() => {
+    slideIndex(slideNumber);
+  }, [slideNumber]);
 
   return (
     <>
@@ -68,11 +78,11 @@ export const Slider = ({ data: pointsData, index: pointIndex }: PropsType) => {
             if (swiper.realIndex !== eventArr.length - 3) setIsEnd(false);
           }}
           onReachBeginning={() => {
-            console.log("Reach start");
+            // console.log("Reach start");
             setIsStart(true);
           }}
           onReachEnd={() => {
-            console.log("Reach end");
+            // console.log("Reach end");
             setIsEnd(true);
           }}
         >
@@ -91,19 +101,6 @@ export const Slider = ({ data: pointsData, index: pointIndex }: PropsType) => {
             <Image src={sliderIcon} alt="next-slider" />
           </button>
         )}
-      </div>
-      <div style={{ display: "flex" }}>
-        {Array.from({ length: eventArr.length }).map((_, index) => (
-          <button
-            key={index}
-            className={
-              slideNumber === index
-                ? `${styles.slidePagination} ${styles.slidePagination_active}`
-                : styles.slidePagination
-            }
-            onClick={() => slideIndex(index)}
-          ></button>
-        ))}
       </div>
     </>
   );
