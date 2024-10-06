@@ -12,7 +12,7 @@
 }
 
 .year {
-  color: #3877ee;
+  color: $colorBlue;
   font-size: 25px;
   font-weight: 400;
   line-height: 120%;
@@ -25,7 +25,7 @@
 }
 
 .event {
-  color: #42567a;
+  color: $colorBackgroundDark;
   font-size: 20px;
   font-weight: 400;
   line-height: 30px;
@@ -48,7 +48,7 @@
   height: 40px;
   border-radius: 50%;
   border: 0;
-  box-shadow: 0px 0px 15px 0px rgba(56, 119, 238, 0.1);
+  box-shadow: 0px 0px 15px 0px rgba($color: $colorBlue, $alpha: 0.1);
   background: #fff;
   right: -60px;
   top: 40px;

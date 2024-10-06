@@ -34,17 +34,17 @@
   line-height: 30px;
   letter-spacing: 0%;
   color: transparent;
-  background-color: #42567a;
+  background-color: $colorBackgroundDark;
   border-radius: 50%;
-  border: 1px solid rgba($color: #303e58, $alpha: 0.5);
+  border: 1px solid rgba($color: $colorPointsBorder, $alpha: 0.5);
   top: calc(50% - 3px);
 
   &_active {
     width: 56px;
     height: 56px;
-    color: #42567a;
-    background-color: #f4f5f9;
-    border: 1px solid rgba($color: #303e58, $alpha: 0.5);
+    color: $colorBackgroundDark;
+    background-color: $colorBackgroundLite;
+    border: 1px solid rgba($color: $colorPointsBorder, $alpha: 0.5);
     top: calc(50% - 28px);
   }
 
@@ -52,9 +52,9 @@
     cursor: pointer;
     width: 56px;
     height: 56px;
-    color: #42567a;
-    background-color: #f4f5f9;
-    border: 1px solid rgba($color: #303e58, $alpha: 0.5);
+    color: $colorBackgroundDark;
+    background-color: $colorBackgroundLite;
+    border: 1px solid rgba($color: $colorPointsBorder, $alpha: 0.5);
     top: calc(50% - 28px);
   }
 }
@@ -71,7 +71,7 @@
   height: 0px;
   overflow: hidden;
   white-space: pre;
-  color: #42567a;
+  color: $colorBackgroundDark;
   font-size: 20px;
   font-weight: 700;
   line-height: 30px;

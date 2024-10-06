@@ -4,8 +4,8 @@
   position: relative;
   width: 1440px;
   margin-left: 160px;
-  border-left: 1px solid rgba(66, 86, 122, 0.1);
-  border-right: 1px solid rgba(66, 86, 122, 0.1);
+  border-left: 1px solid rgba($color: $colorBackgroundDark, $alpha: 0.1);
+  border-right: 1px solid rgba($color: $colorBackgroundDark, $alpha: 0.1);
 
   @include _mobile {
     width: 100%;
@@ -19,7 +19,7 @@
   position: absolute;
   width: 1px;
   height: 100%;
-  background-color: rgba(66, 86, 122, 0.1);
+  background-color: rgba($color: $colorBackgroundDark, $alpha: 0.1);
   top: 0;
   right: 50%;
 
@@ -44,7 +44,7 @@
 .headerRectangle {
   width: 7px;
   height: 120px;
-  background-image: linear-gradient(to bottom, #3877ee 0%, #ef5da8 100%);
+  background-image: linear-gradient(to bottom, $colorBlue 0%, #ef5da8 100%);
 
   @include _mobile {
     display: none;
@@ -53,7 +53,7 @@
 
 .headerText {
   max-width: 353px;
-  color: #42567a;
+  color: $colorBackgroundDark;
   font-size: 56px;
   font-weight: 700;
   line-height: 120%;
@@ -75,8 +75,8 @@
   align-items: center;
   width: 530px;
   height: 530px;
-  border-radius: 530px;
-  border: 1px solid rgba(66, 86, 122, 0.1);
+  border-radius: 50%;
+  border: 1px solid rgba($color: $colorBackgroundDark, $alpha: 0.1);
   margin: auto;
   top: 55px;
 
@@ -92,7 +92,7 @@
   position: absolute;
   width: 100%;
   height: 1px;
-  background-color: rgba(66, 86, 122, 0.1);
+  background-color: rgba($color: $colorBackgroundDark, $alpha: 0.1);
   left: 0;
 
   @include _mobile {

@@ -24,7 +24,7 @@
   font-size: 14px;
   font-weight: 400;
   line-height: 18.12px;
-  color: #42567a;
+  color: $colorBackgroundDark;
 }
 
 .button {
@@ -35,7 +35,7 @@
   height: 50px;
   box-sizing: border-box;
   border-radius: 50%;
-  border: 1px solid rgba($color: #42567a, $alpha: 0.5);
+  border: 1px solid rgba($color: $colorBackgroundDark, $alpha: 0.5);
 
   &_reflect {
     transform: scaleX(-1);
@@ -77,7 +77,7 @@
   height: 6px;
   border-radius: 50%;
   border: 0;
-  background: #42567a;
+  background: $colorBackgroundDark;
   opacity: 0.4;
 
   @include _hover {
