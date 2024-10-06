@@ -1,0 +1,68 @@
+@import "../../app/general";
+
+.container {
+  display: flex;
+  position: relative;
+  margin: 56px auto;
+
+  @include _mobile {
+    max-width: 120vw;
+    display: block;
+  }
+}
+
+.year {
+  color: $colorBlue;
+  font-size: 25px;
+  font-weight: 400;
+  line-height: 120%;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+
+  @include _mobile {
+    font-size: 16px;
+  }
+}
+
+.event {
+  color: $colorBackgroundDark;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 30px;
+
+  @include _mobile {
+    max-width: 50vw;
+    font-size: 14px;
+    line-height: 145%;
+  }
+}
+
+.slideButton {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  box-shadow: 0px 0px 15px 0px rgba($color: $colorBlue, $alpha: 0.1);
+  background: #fff;
+  right: -60px;
+  top: 40px;
+
+  @include _hover {
+    cursor: pointer;
+  }
+
+  &_prev {
+    transform: scaleX(-1);
+    left: -60px;
+  }
+
+  @include _mobile {
+    display: none;
+  }
+}

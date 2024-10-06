@@ -1,0 +1,18 @@
+$colorBackgroundDark: #42567a;
+$colorBackgroundLite: #f4f5f9;
+$colorBlue: #3877ee;
+$colorPointsBorder: #303e58;
+
+@mixin _hover {
+  @media (hover: hover) {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin _mobile {
+  @media (max-width: 1599.98px) {
+    @content;
+  }
+}

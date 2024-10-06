@@ -1,0 +1,113 @@
+@import "../../app/general";
+
+.main {
+  position: relative;
+  width: 1440px;
+  margin-left: 160px;
+  border-left: 1px solid rgba($color: $colorBackgroundDark, $alpha: 0.1);
+  border-right: 1px solid rgba($color: $colorBackgroundDark, $alpha: 0.1);
+
+  @include _mobile {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    overflow: hidden;
+  }
+}
+
+.verticalAxis {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: rgba($color: $colorBackgroundDark, $alpha: 0.1);
+  top: 0;
+  right: 50%;
+
+  @include _mobile {
+    display: none;
+  }
+}
+
+.header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  top: 140px;
+
+  @include _mobile {
+    top: 0;
+    margin-top: 59px;
+  }
+}
+
+.headerRectangle {
+  width: 7px;
+  height: 120px;
+  background-image: linear-gradient(to bottom, $colorBlue 0%, #ef5da8 100%);
+
+  @include _mobile {
+    display: none;
+  }
+}
+
+.headerText {
+  max-width: 353px;
+  color: $colorBackgroundDark;
+  font-size: 56px;
+  font-weight: 700;
+  line-height: 120%;
+  letter-spacing: 0%;
+  text-align: left;
+  margin-left: 78px;
+
+  @include _mobile {
+    max-width: 123px;
+    font-size: 20px;
+    margin: 0 20px;
+  }
+}
+
+.ellipse {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 530px;
+  height: 530px;
+  border-radius: 50%;
+  border: 1px solid rgba($color: $colorBackgroundDark, $alpha: 0.1);
+  margin: auto;
+  top: 55px;
+
+  @include _mobile {
+    width: auto;
+    height: auto;
+    border: 0;
+    top: 0;
+  }
+}
+
+.horizontalAxis {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: rgba($color: $colorBackgroundDark, $alpha: 0.1);
+  left: 0;
+
+  @include _mobile {
+    position: absolute;
+    left: 20px;
+    top: 185px;
+    width: calc(100% - 40px);
+  }
+}
+
+.info {
+  margin: 0 80px;
+
+  @include _mobile {
+    display: grid;
+    margin: 76px 20px 0 20px;
+  }
+}

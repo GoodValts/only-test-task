@@ -1,0 +1,36 @@
+@import "../../app/general";
+
+.container {
+  display: flex;
+  position: absolute;
+  top: 170px;
+
+  @include _mobile {
+    position: relative;
+    top: 54px;
+  }
+}
+
+.date {
+  white-space: pre;
+  font-size: 200px;
+  font-weight: 700;
+  line-height: 160px;
+  letter-spacing: -4px;
+  margin-right: 33px;
+
+  @include _mobile {
+    font-size: 56px;
+    line-height: 72px;
+    letter-spacing: -1.12px;
+    margin-right: 7px;
+  }
+}
+
+.firstDate {
+  color: #5d5fef;
+}
+
+.secondDate {
+  color: #ef5da8;
+}
