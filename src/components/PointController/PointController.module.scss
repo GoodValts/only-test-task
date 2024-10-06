@@ -33,4 +33,8 @@
   &_disabled {
     opacity: 0.5;
   }
+
+  @include _hover {
+    cursor: pointer;
+  }
 }

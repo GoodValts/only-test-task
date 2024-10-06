@@ -1,10 +1,15 @@
 @import "../../app/general";
 
-.slider {
+.container {
+  display: flex;
   position: relative;
   top: -133px;
   margin: 56px auto;
 }
+
+// .slider {
+//   max-width: calc(100% - 120px);
+// }
 
 .year {
   color: #3877ee;
@@ -20,4 +25,50 @@
   font-size: 20px;
   font-weight: 400;
   line-height: 30px;
+}
+
+.slideButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  width: 40px;
+  min-width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 0;
+  box-shadow: 0px 0px 15px 0px rgba(56, 119, 238, 0.1);
+  background: #fff;
+  margin-left: 80px;
+
+  @include _hover {
+    cursor: pointer;
+  }
+
+  &_prev {
+    margin-left: 0;
+    margin-right: 80px;
+    transform: scaleX(-1);
+  }
+}
+
+.slidePagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  border: 0;
+  background: #42567a;
+  opacity: 0.4;
+  margin: 5px;
+
+  @include _hover {
+    cursor: pointer;
+  }
+
+  &_active {
+    opacity: 1;
+  }
 }
