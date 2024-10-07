@@ -41,7 +41,7 @@ Your can also open [deploy link](https://only-test-task.netlify.app)
 
 ## Custom_data
 
-You can open `src/lib/data.json` and edit data as you want. Also, you can create your own data file and change import in `src/app/components/HistoricalDates/HistoricalDates.tsx`
+Open `src/lib/data.json` and edit data as you want. Also, you can create your own data file and change import in `src/app/components/HistoricalDates/HistoricalDates.tsx`
 
 ```
 {
