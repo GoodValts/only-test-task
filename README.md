@@ -11,7 +11,7 @@
 
 ## Description
 
-Test task for the junior frontend position at [Only](https://only.digital/). Deadline - 08/10.2024.
+Test task for the frontend position at [Only](https://only.digital/). Deadline - 08/10.2024.
 
 [PR link](https://github.com/GoodValts/only-test-task/pull/1)
 
